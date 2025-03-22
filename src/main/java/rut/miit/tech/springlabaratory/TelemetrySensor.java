@@ -3,6 +3,7 @@ package rut.miit.tech.springlabaratory;
 import com.github.javafaker.Faker;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,5 +53,13 @@ public class TelemetrySensor implements Observable<TelemetryData> {
     @Override
     public void notifySubscribers(TelemetryData data) {
         observers.forEach(observer -> observer.notify(data));
+    }
+    public CommandLineRunner commandLineRunner() {
+        return (args) -> {
+            System.out.println("CmdLineRunner");
+            for (Object o : args) {
+                System.out.println(args);
+            }
+        };
     }
 }
